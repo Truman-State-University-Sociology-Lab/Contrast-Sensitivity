@@ -149,11 +149,14 @@ button{
 	margin-bottom: 30px;
 	width: 399px;
 }
-.contrastDemoPanel{
-	width: 69%;
+.contrastPanel{
+	width: 100%;
 	display: inline-block;
 	margin-right: 2%;
 	vertical-align: top;
+}
+.contrastPanel.demo{
+	width: 69%;
 }
 .contrastDemoInstructions{
 	width: 28%;
@@ -165,7 +168,7 @@ button{
 .whiteBackground p{
 	padding: 10px;
 }
-.contrastDemoPanel h5, .contrastDemoInstructions h5{
+.contrastPanel h5, .contrastDemoInstructions h5{
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -173,19 +176,19 @@ button{
 .contrastDemoInstructions h5{
 	text-decoration: underline;
 }
-.contrastDemoPanel .choice{
+.contrastPanel .choice{
 	width: 24%;
 	text-align: center;
 	display: inline-block;
 }
-.contrastDemoPanel .panelText{
+.contrastPanel .panelText{
 	width: 50%;
 	display: inline-block;
 	text-align: center;
 	height: 94px;
 	vertical-align: top;
 }
-.contrastDemoPanel .panelText p{
+.contrastPanel .panelText p{
 	margin-top: 34px;
 }
 .yourChoice{
@@ -224,4 +227,15 @@ button{
 }
 .panelInstructions{
 	height: 70px;
+}
+#contrastSensitivity .instructionPicture{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	width: 510px;
+}
+#contrastSensitivity em{
+	background-color: white;
+	padding: 5px 11px 5px 10px;
+	font-style: normal;
 }

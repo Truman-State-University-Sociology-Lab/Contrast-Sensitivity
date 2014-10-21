@@ -16,7 +16,7 @@ var load = function(current,next,isShortcut){
 			}else if(pageView == 'contrastSensitivity'){
 				//meaningReset();
 				$('#contrastSensitivity > div').hide();
-				$('#contrastSensitivity #contrastInstruction1').show();
+				$('#contrastSensitivity #contrast1').show();
 			}
 		}
 		updateLocation(pageView);
