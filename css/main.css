@@ -1,0 +1,227 @@
+html, body {
+		height: 100%;
+		margin: 0;
+	}
+#wrapper{
+	min-height: 100%;
+	background-color: #38114D;
+	background-image: -moz-linear-gradient(center top , #38114D 19%, #5B187E 57%);
+}
+ul#navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #AAA2AE;
+    text-align: center;
+}
+li.navItem {
+    display: inline-block;
+    min-width: 100px;
+}
+li.navItem:hover{
+	cursor: pointer;
+	background-color: grey;
+}
+.navItem a:link, .navItem a:visited{
+	color: #38114D;
+}
+.currentLocation{
+	background-color: green;
+}
+#banner{
+	margin-left:auto;
+	margin-right:auto;
+	width:477px;
+	padding-top:100px;
+	padding-bottom:200px;
+}
+#startScreen{
+	margin-top: -140px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+}
+#content{
+	width:80%;
+	/*background-color:#AAA2AE;*/
+	/*margin-top: -100px;*/
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 150px;
+	font-size:1.4em;
+	padding: 100px 0px;
+}
+p{
+	margin-top: 0px;
+}
+input[type="radio"]{
+	min-width: 30px;
+}
+#spinner{
+	/*position: relative;
+	margin-top: -90px;*/
+	display: none;
+}
+.survey{
+	display: none;
+}
+.buttons{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+}
+button{
+	min-width: 100px;
+}
+#start{
+	margin-left:auto;
+	margin-right:auto;
+	width: 100px;
+}
+.textArea{
+	background-color: #BDBDBD;/*#AAA2AE;*/
+	padding: 20px;
+	/*margin-top: 100px;*/
+}
+/*.csBackground{
+	background-color: #BDBDBD;
+}*/
+.meaningPicture{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	width: 200px;
+}
+.meaningInstruction{
+	background-color: white;
+	padding-left: 20px;
+	position: relative;
+}
+.meaningButtons{
+	margin-left: -11px;
+	height: 100px;
+	margin-top: -36px;
+	margin-bottom: 20px;
+	border: 1px solid black;
+	width: 102%;
+}
+.meaningButtons label{
+	background-color: white;
+	padding: 0px 10px;
+	margin: 50px;
+}
+.meaningButtons label input[type="radio"]{
+	min-width: 5px;
+	margin: 0px 10px 0px 0px;
+}
+.meaningInputs{
+	position: relative;
+	width: 450px;
+	top: 50%;
+	left: 50%;
+	margin: -13px 0px 0px -225px;
+}
+ input[disabled] {
+    color: #DCDAD1;
+}
+#meaningInsight > div{
+	min-height: 550px;
+}
+.contrastInstruction{
+	width: 82%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#contrastSensitivity > div{
+	min-height: 550px;
+}
+.contrastPicture{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	width: 120px;
+}
+.panelPicture{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	width: 399px;
+}
+.contrastDemoPanel{
+	width: 69%;
+	display: inline-block;
+	margin-right: 2%;
+	vertical-align: top;
+}
+.contrastDemoInstructions{
+	width: 28%;
+	display: inline-block;
+}
+.whiteBackground{
+	background-color: white;
+}
+.whiteBackground p{
+	padding: 10px;
+}
+.contrastDemoPanel h5, .contrastDemoInstructions h5{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.contrastDemoInstructions h5{
+	text-decoration: underline;
+}
+.contrastDemoPanel .choice{
+	width: 24%;
+	text-align: center;
+	display: inline-block;
+}
+.contrastDemoPanel .panelText{
+	width: 50%;
+	display: inline-block;
+	text-align: center;
+	height: 94px;
+	vertical-align: top;
+}
+.contrastDemoPanel .panelText p{
+	margin-top: 34px;
+}
+.yourChoice{
+	border: 1px solid white;
+	height: 94px;
+}
+.bulbPicture{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	background-image: url('../assets/images/contrast/unlit.png');
+}
+.choice p{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.choice input[type="radio"]{
+	display: inline-block;
+	position: relative;
+	top: -14px;
+	min-width: 0px;
+}
+.choice input[type=radio]:checked ~ .bulbPicture {
+  background-image: url('../assets/images/contrast/lit.png');
+}
+.innerLeft{
+	width: 61px;
+	float:right;
+}
+.innerRight{
+	width: 68px;
+	float:left;
+}
+.partnerChoice .bulbPicture{
+	margin-left: 22px;
+}
+.panelInstructions{
+	height: 70px;
+}
