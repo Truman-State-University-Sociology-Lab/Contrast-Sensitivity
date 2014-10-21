@@ -14,7 +14,7 @@ var load = function(current,next,isShortcut){
 				$('#meaningInsight > div').hide();
 				$('#meaningInsight #meaningDemo1').show();
 			}else if(pageView == 'contrastSensitivity'){
-				//meaningReset();
+				contrastReset();
 				$('#contrastSensitivity > div').hide();
 				$('#contrastSensitivity #contrast1').show();
 			}

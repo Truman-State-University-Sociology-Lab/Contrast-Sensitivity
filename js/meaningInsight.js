@@ -3,7 +3,7 @@ $('#meaningInsight #meaningDemo1').show();
 $('input[disabled]').parent().css('color','#DCDCDC');
 var stepCounter;
 var content;
-var stepper;
+var stepperMeaning;
 
 $('#meaningInsight #meaningDemo1 button.continue').click(function(){
 	$('#meaningInsight #meaningDemo1').hide();
@@ -19,7 +19,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 			$('#meaning' + stepCounter + ' input').attr('disabled', true).parent().css('color','#DCDCDC');
 		}, 500);
 	}
-	stepper = setInterval(function(){
+	stepperMeaningMeaning = setInterval(function(){
 	    if (stepCounter==0){
 	    	$('#meaningInsight #meaningStart').hide();
 	    	$('#meaningQuestions').show();
@@ -32,7 +32,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 			$('#meaningInsight #meaningFinish').show();
 			stepCounter++;
 			blank();
-			clearInterval(stepper);
+			clearInterval(stepperMeaning);
 	    }else{
 	    	$('#meaningInsight #meaning' + stepCounter).hide();
 			$('#meaningInsight #meaning' + (stepCounter+1)).show();
@@ -42,7 +42,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 	}, 1000);
 });
 var meaningReset = function(){
-	clearInterval(stepper);
+	clearInterval(stepperMeaning);
 	$('#meaningInsight input').removeAttr('checked');
 	stepCounter = 0;
 	$('#meaningQuestions').empty();

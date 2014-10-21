@@ -1,5 +1,8 @@
 $('#contrastSensitivity > div').hide();
 $('#contrastSensitivity #contrastInstruction1').show();
+var stepCounter;
+var content;
+var stepperContrast;
 
 $('#contrastSensitivity #contrastInstruction1 button.continue').click(function(){
 	$('#contrastSensitivity #contrastInstruction1').hide();
@@ -113,20 +116,15 @@ $('#contrastSensitivity #contrastScoring7 button.continue').click(function(){
 
 
 
-// $('#contrastSensitivity #contrastDemo1 button.continue').click(function(){
-// 	$('#contrastSensitivity #contrastDemo1').hide();
-// 	$('#contrastSensitivity #contrastDemo2').show();
-// 	$('#contrastDemo2 input')[$('#contrastDemo1 input:checked').val() - 1].checked = true;
-// });
 // $('#contrastSensitivity #contrastDemo2 button.continue').click(function(){
 // 	$('#contrastSensitivity #contrastDemo2').hide();
 // 	$('#contrastSensitivity #meaningStart').show();
-	// var blank = function(){
-	// 	setTimeout(function(){
-	// 		$('#meaning' + stepCounter + ' img').attr('src','assets/images/meaning/blank.png');
-	// 		$('#meaning' + stepCounter + ' input').attr('disabled', true).parent().css('color','#DCDCDC');
-	// 	}, 500);
-	// }
+// 	var blank = function(){
+// 		setTimeout(function(){
+// 			$('#meaning' + stepCounter + ' img').attr('src','assets/images/meaning/blank.png');
+// 			$('#meaning' + stepCounter + ' input').attr('disabled', true).parent().css('color','#DCDCDC');
+// 		}, 500);
+// 	}
 // 	stepper = setInterval(function(){
 // 	    if (stepCounter==0){
 // 	    	$('#contrastSensitivity #meaningStart').hide();
@@ -149,13 +147,13 @@ $('#contrastSensitivity #contrastScoring7 button.continue').click(function(){
 // 	    }
 // 	}, 1000);
 // });
-// var meaningReset = function(){
-// 	clearInterval(stepper);
-// 	$('#contrastSensitivity input').removeAttr('checked');
-// 	stepCounter = 0;
-// 	$('#meaningQuestions').empty();
-// 	for(var x = 1; x <= 25; x++ ){
-// 		content = '<div id="meaning' + x + '" style="display: none;"><div class="meaningPicture"><img src="assets/images/meaning/' + x + '.png"/></div><hr/><br/><div class="meaningInstruction" style="width: 670px"><p>Does word #1 or word #2 correspond to the English word? Click on one:</p></div><div class="meaningButtons"><div class="meaningInputs"><label><input type="radio" name="meaning' + x + '" value="1"/>Word #1</label><label><input type="radio" name="meaning' + x + '" value="2"/>Word #2</label></div></div></div>';
-// 		$('#meaningQuestions').append(content);
-// 	}
-// }
+var contrastReset = function(){
+	clearInterval(stepperContrast);
+	$('#contrastSensitivity input').removeAttr('checked');
+	stepCounter = 0;
+	$('#contrastQuestions').empty();
+	for(var x = 1; x <= 25; x++ ){
+		content = '<div id="contrast' + x + '"><div class="contrastPanel"><div class="contrastPicture"><img src="assets/images/contrast/' + x + '.png"/></div><hr/><div class="panelInstructions"><h5>Task Panel</h5></div><div class="yourChoice"><div class="top choice"><label><div class="innerLeft"><p>Top</p><input type="radio" name="contrastDemo1Initial" value="top" /><div class="bulbPicture"></div></div></label></div><div class="panelText"><p>Your Initial Choice</p></div><div class="bottom choice"><label><div class="innerRight"><p>Bottom</p><input type="radio" name="contrastDemo1Initial" value="bottom" /><div class="bulbPicture"></div></div></label></div></div><div class="partnerChoice"><div class="top choice"><div class="innerLeft"><p>Top</p><div class="bulbPicture"></div></div></div><div class="panelText"><p>Your Partner\'s Initial Choice</p></div><div class="bottom choice"><div class="innerRight"><p>Bottom</p><div class="bulbPicture"></div></div></div></div><div class="yourChoice"><div class="top choice"><label><div class="innerLeft"><p>Top</p><input type="radio" name="contrastDemo1Final" value="top" disabled/><div class="bulbPicture"></div></div></label></div><div class="panelText"><p>Your Final Choice</p></div><div class="bottom choice"><label><div class="innerRight"><p>Bottom</p><input type="radio" name="contrastDemo1Final" value="bottom" disabled/><div class="bulbPicture"></div></div></label></div></div></div></div>';
+		$('#contrastQuestions').append(content);
+	}
+}
