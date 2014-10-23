@@ -17,6 +17,8 @@ var load = function(current,next,isShortcut){
 				contrastReset();
 				$('#contrastSensitivity > div').hide();
 				$('#contrastSensitivity #contrast1').show();
+				$('#contrastQuestions').show();
+				blank();
 			}
 		}
 		updateLocation(pageView);
