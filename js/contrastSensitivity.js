@@ -114,6 +114,7 @@ $('#contrastSensitivity #contrastScoring7 button.continue').click(function(){
 			$('#contrastSensitivity #contrastScoring8').hide();
 			$('#contrastQuestions').show();
 			$('#contrastSensitivity #contrast1').show();
+			stepCounter = 1;
 			blank();
 		}, 2000);
 	}, 2000);
@@ -122,7 +123,6 @@ $('#contrastSensitivity #contrastScoring7 button.continue').click(function(){
 var contrastReset = function(){
 	//clearInterval(stepperContrast);
 	$('#contrastSensitivity input').removeAttr('checked');
-	stepCounter = 1;
 	$('#contrastQuestions').empty();
 	for(var x = 1; x <= 25; x++ ){
 		content = '<div id="contrast' + x + '" style="display: none;"><div class="contrastPanel"><div class="contrastPicture"><img src="assets/images/contrast/' + x + '.png"/></div><hr/><div class="panelInstructions"><h5>Task Panel</h5></div><div class="yourChoice"><div class="top choice"><label><div class="innerLeft"><p>Top</p><input type="radio" name="contrast' + x + 'Initial" value="top" /><div class="bulbPicture"></div></div></label></div><div class="panelText"><p>Your Initial Choice</p></div><div class="bottom choice"><label><div class="innerRight"><p>Bottom</p><input type="radio" name="contrast' + x + 'Initial" value="bottom" /><div class="bulbPicture"></div></div></label></div></div><div class="partnerChoice"><div class="top choice"><div class="innerLeft"><p>Top</p><div class="bulbPicture"></div></div></div><div class="panelText"><p>Your Partner\'s Initial Choice</p></div><div class="bottom choice"><div class="innerRight"><p>Bottom</p><div class="bulbPicture"></div></div></div></div><div class="yourChoice"><div class="top choice"><label><div class="innerLeft"><p>Top</p><input type="radio" name="contrast' + x + 'Final" value="top" disabled/><div class="bulbPicture"></div></div></label></div><div class="panelText"><p>Your Final Choice</p></div><div class="bottom choice"><label><div class="innerRight"><p>Bottom</p><input type="radio" name="contrast' + x + 'Final" value="bottom" disabled/><div class="bulbPicture"></div></div></label></div></div></div></div>';

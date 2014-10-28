@@ -40,8 +40,8 @@ var updateLocation = function(newLocation){
 	window.scrollTo(0,0);
 }
 var report = function(){
-		$('input:checked').each(function(){console.log(this.name + ": " + this.value)})
-	}
+	$('input:checked').each(function(){console.log(this.name + ": " + this.value)})
+}
 $(function(){
 	opts = {
 	  lines: 13, // The number of lines to draw
@@ -61,10 +61,11 @@ $(function(){
 	  top: '50%', // Top position relative to parent
 	  left: '50%' // Left position relative to parent
 	};
-	pageView = 'startScreen';
+	pageView = 'setup';
 	target = $('#spinner')[0];
 	spinner = new Spinner(opts).spin(target);
 	bannerHeight = $('#bannerContainer').height();
+	$('#bannerContainer').height(0).find('img').hide();
 
 	$('#content > div').each(function(){
 		$('#navBar').append("<li class='navItem'><a href='" + this.id + "'>" + this.id + "</a></li>");
@@ -78,6 +79,11 @@ $(function(){
 	});
 	$('#start').click(function(){
 		load('startScreen', 'meaningInsight', false);
+	});
+	$("#setup").load( "html/setup.html", function(){
+		$('#setup button.submit').click(function(){
+			load('setup', 'startScreen', true);
+		});
 	});
 	$("#meaningInsight").load( "html/meaningInsight.html", function(){
 		meaningReset();

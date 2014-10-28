@@ -19,7 +19,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 			$('#meaning' + stepCounter + ' input').attr('disabled', true).parent().css('color','#DCDCDC');
 		}, 500);
 	}
-	stepperMeaningMeaning = setInterval(function(){
+	stepperMeaning = setInterval(function(){
 	    if (stepCounter==0){
 	    	$('#meaningInsight #meaningStart').hide();
 	    	$('#meaningQuestions').show();
