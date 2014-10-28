@@ -16,14 +16,11 @@ var load = function(current,next,isShortcut){
 			}else if(pageView == 'contrastSensitivity'){
 				contrastReset();
 				$('#contrastSensitivity > div').hide();
-				$('#contrastSensitivity #contrast1').show();
-				$('#contrastQuestions').show();
-				blank();
+				$('#contrastSensitivity #contrastInstruction1').show();
 			}
 		}
 		updateLocation(pageView);
 	}
-	//$('#' + current).hide();
 	$('#content > div').hide();
 	pageView = next;
 	if(isShortcut){
@@ -90,14 +87,17 @@ $(function(){
 			});
 		});
 	});
+	$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
+		contrastReset();
+		$("#contrastFinish").load( "html/waitForAssistant.html", function(){
+			$('#contrastFinish button.waitForAssistantButton').click(function(){
+				load('contrastSensitivity', 'survey2', false);
+			});
+		});
+	});
 	$("#survey1").load( "html/survey1.html", function() {
 		$('#survey1 button.submit').click(function(){
 			load('survey1', 'contrastSensitivity', false);
-		});
-	});
-	$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
-		$('#contrastSensitivity button.submit').click(function(){
-			load('contrastSensitivity', 'survey2', false);
 		});
 	});
 	$("#survey2").load( "html/survey2.html", function() {
