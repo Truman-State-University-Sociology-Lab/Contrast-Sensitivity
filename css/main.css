@@ -18,7 +18,7 @@ ul#navBar {
 }
 li.navItem {
     display: inline-block;
-    min-width: 100px;
+    margin-right: 10px;
 }
 li.navItem:hover{
 	cursor: pointer;
@@ -238,4 +238,43 @@ button{
 	background-color: white;
 	padding: 5px 11px 5px 10px;
 	font-style: normal;
+}
+#setup .column{
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+}
+#setup .column:last-of-type{
+	width: 48%
+}
+#setup h4{
+	margin: 5px;
+}
+#setup #available, #setup #using, #setup #options{
+	margin: 0px;
+	padding: 5px;
+	border: 1px solid black;
+}
+#setup .listItem{
+	list-style-type: none;
+}
+#setup #available .listItem{
+	cursor: pointer;
+}
+#setup #using .listItem:hover{
+	cursor: move;
+}
+#setup #available .listItem:hover{
+	background-color: lightgreen;
+}
+#setup #using .listItem:hover{
+	background-color: lightgoldenrodyellow;
+}
+#setup #using .listItem .closeButton{
+	float: right;
+	cursor: pointer;
+	margin-top: 1px;
+}
+#setup #options input{
+	float: right;
 }
