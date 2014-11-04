@@ -278,3 +278,12 @@ button{
 #setup #options input{
 	float: right;
 }
+#setup .buttons button{
+	display: inline-block;
+	margin-left: 0px !important;
+	min-width: 150px;
+}
+#setup .buttons{
+	width: 306px;
+	padding-left: 17px;
+}

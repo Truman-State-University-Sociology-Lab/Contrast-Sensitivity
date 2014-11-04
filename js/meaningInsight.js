@@ -4,6 +4,15 @@ $('input[disabled]').parent().css('color','#DCDCDC');
 var stepCounter;
 var content;
 var stepperMeaning;
+var timeToBlank;
+var timeToNext;
+if(debug){
+	timeToBlank = 500;
+	timeToNext = 1000;
+}else{
+	timeToBlank = 5000;
+	timeToNext = 7000;
+}
 
 $('#meaningInsight #meaningDemo1 button.continue').click(function(){
 	$('#meaningInsight #meaningDemo1').hide();
@@ -17,7 +26,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 		setTimeout(function(){
 			$('#meaning' + stepCounter + ' img').attr('src','assets/images/meaning/blank.png');
 			$('#meaning' + stepCounter + ' input').attr('disabled', true).parent().css('color','#DCDCDC');
-		}, 500);
+		}, timeToBlank);
 	}
 	stepperMeaning = setInterval(function(){
 	    if (stepCounter==0){
@@ -39,7 +48,7 @@ $('#meaningInsight #meaningDemo2 button.continue').click(function(){
 			stepCounter++;
 			blank();
 	    }
-	}, 1000);
+	}, timeToNext);
 });
 var meaningReset = function(){
 	clearInterval(stepperMeaning);

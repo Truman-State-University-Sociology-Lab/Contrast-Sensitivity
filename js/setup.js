@@ -1,5 +1,6 @@
 $('#using').sortable();
 var listItem = "";
+var order = [];
 var d = new Date();
 var dateCode = ('' + d.getFullYear() + (d.getMonth() + 1) + d.getDate()).substring(2);
 $('#options input[name="date"]').val(dateCode);
@@ -44,3 +45,58 @@ var randomNumbers = function(val){
 	}
 	$('#options input[name="' + val.id + 'Agree"]').val(numberList.substring(0, numberList.length-1));
 }
+
+var loadSections = function(){
+	$('#using li').each(function(){order.push($(this).attr('name'))});
+	for(i=0;i<order.length;i++){
+		eval(order[i] + 'Load("' + order[i + 1] + '")');
+	}
+}
+var callLoad = function(next){
+	if(next != "undefined"){load(next, false);}
+	else{load('startScreen', false);}
+}
+
+var meaningInsightLoad = function(next){
+	$("#meaningInsight").load( "html/meaningInsight.html", function(){
+		$("#meaningFinish").load( "html/waitForAssistant.html", function(){
+			$('#meaningFinish button.waitForAssistantButton').click(function(){
+				callLoad(next);
+			});
+		});
+	});
+}
+var contrastSensitivityLoad = function(next){
+	$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
+		$("#contrastFinish").load( "html/waitForAssistant.html", function(){
+			$('#contrastFinish button.waitForAssistantButton').click(function(){
+				callLoad(next);
+			});
+		});
+	});
+}
+var survey1Load = function(next){
+	$("#survey1").load( "html/survey1.html", function() {
+		$('#survey1 button.submit').click(function(){
+			callLoad(next);
+		});
+	});
+}
+var survey2Load = function(next){
+	$("#survey2").load( "html/survey2.html", function() {
+		$('#survey2 button.submit').click(function(){
+			callLoad(next);
+		});
+	});
+}
+var survey3Load = function(next){
+	$("#survey3").load( "html/survey3.html", function() {
+		$('#survey3 button.submit').click(function(){
+			callLoad(next);
+		});
+	});
+}
+
+$('#start').click(function(){
+	load(order[0], false);
+});

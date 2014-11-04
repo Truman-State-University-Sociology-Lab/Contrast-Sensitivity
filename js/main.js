@@ -1,9 +1,18 @@
+//$.ajaxSetup({});
 var opts;
 var target;
 var spinner;
 var pageView;
 var bannerHeight;
-var load = function(current,next,isShortcut){
+var queryArray = window.location.search.substring(1).split('&');
+var queries = {};
+for(i=0;i<queryArray.length;i++){
+	queryArray[i] = queryArray[i].split('=');
+	queries[queryArray[i][0]] = queryArray[i][1]
+}
+var debug = 'debug' in queries && queries['debug'] == 'true';
+
+var load = function(next,isShortcut){
 	var afterSpin = function(){
 		if(pageView == 'startScreen'){
 			$('#bannerContainer').height(bannerHeight).find('img').show();
@@ -67,53 +76,78 @@ $(function(){
 	bannerHeight = $('#bannerContainer').height();
 	$('#bannerContainer').height(0).find('img').hide();
 
-	$('#content > div').each(function(){
-		$('#navBar').append("<li class='navItem'><a href='" + this.id + "'>" + this.id + "</a></li>");
-	});
-	$('.navItem').click(function(e){
-		e.preventDefault();
-		var current = pageView;
-		var next = e.target.text||e.target.children[0].text;
-		console.log('navigating to: ' + next);
-		load(current, next, true);
-	});
-	$('#start').click(function(){
-		load('startScreen', 'meaningInsight', false);
-	});
+	if(debug){
+		$('#content > div').each(function(){
+			$('#navBar').append("<li class='navItem'><a href='" + this.id + "'>" + this.id + "</a></li>");
+		});
+		$('.navItem').click(function(e){
+			e.preventDefault();
+			var next = e.target.text||e.target.children[0].text;
+			if(next == 'meaningInsight'){
+				meaningReset();
+				console.log('meaning reset');
+			}else if(next == 'contrastSensitivity'){
+				contrastReset();
+				console.log('contrast reset');
+			}
+			console.log('navigating to: ' + next);
+			load(next, true);
+		});
+		$("#meaningInsight").load( "html/meaningInsight.html", function(){
+			meaningReset();
+			$("#meaningFinish").load( "html/waitForAssistant.html", function(){
+				$('#meaningFinish button.waitForAssistantButton').click(function(){
+					load('contrastSensitivity', false);
+				});
+			});
+		});
+		$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
+			contrastReset();
+			$("#contrastFinish").load( "html/waitForAssistant.html", function(){
+				$('#contrastFinish button.waitForAssistantButton').click(function(){
+					load('survey1', false);
+				});
+			});
+		});
+		$("#survey1").load( "html/survey1.html", function() {
+			$('#survey1 button.submit').click(function(){
+				load('survey2', false);
+			});
+		});
+		$("#survey2").load( "html/survey2.html", function() {
+			$('#survey2 button.submit').click(function(){
+				load('survey3', false);
+			});
+		});
+		$("#survey3").load( "html/survey3.html", function() {
+			$('#survey3 button.submit').click(function(){
+				load('startScreen', false);
+			});
+		});
+		$('#start').click(function(){
+			load('meaningInsight', false);
+		});
+	}
+
 	$("#setup").load( "html/setup.html", function(){
-		$('#setup button.submit').click(function(){
-			load('setup', 'startScreen', true);
+		$('#setup button.start').click(function(){
+			if($('#using li').length == 0){
+				alert('Please select at least one section to use');
+			}else if($('#options div[name="meaningInsight"]').length > 0 && $('#options div[name="meaningInsight"] input[name="meaningInsightAgree"]').val() == ""){
+				alert('Please select which Meaning Insight questions to agree with');
+			}else if($('#options div[name="contrastSensitivity"]').length > 0 && $('#options div[name="contrastSensitivity"] input[name="contrastSensitivityAgree"]').val() == ""){
+				alert('Please select which Contrast Sensitivity questions to agree with');
+			}else{
+				loadSections();
+				load('startScreen', true);
+			}
 		});
-	});
-	$("#meaningInsight").load( "html/meaningInsight.html", function(){
-		meaningReset();
-		$("#meaningFinish").load( "html/waitForAssistant.html", function(){
-			$('#meaningFinish button.waitForAssistantButton').click(function(){
-				load('meaningInsight', 'survey1', false);
-			});
-		});
-	});
-	$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
-		contrastReset();
-		$("#contrastFinish").load( "html/waitForAssistant.html", function(){
-			$('#contrastFinish button.waitForAssistantButton').click(function(){
-				load('contrastSensitivity', 'survey2', false);
-			});
-		});
-	});
-	$("#survey1").load( "html/survey1.html", function() {
-		$('#survey1 button.submit').click(function(){
-			load('survey1', 'contrastSensitivity', false);
-		});
-	});
-	$("#survey2").load( "html/survey2.html", function() {
-		$('#survey2 button.submit').click(function(){
-			load('survey2', 'survey3', false);
-		});
-	});
-	$("#survey3").load( "html/survey3.html", function() {
-		$('#survey3 button.submit').click(function(){
-			load('survey3', 'startScreen', false);
+		$('#setup button.debug').click(function(){
+			if(window.location.toString().substring(window.location.toString().indexOf('?')) == '?debug=true'){
+				window.location = window.location.toString().split('?')[0];
+			}else{
+				window.location = window.location + '?debug=true';
+			}
 		});
 	});
 	
