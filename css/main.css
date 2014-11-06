@@ -287,3 +287,17 @@ button{
 	width: 306px;
 	padding-left: 17px;
 }
+#contrastSensitivitySolo .meaningInputs{
+	width: 606px;
+	left: auto;
+	margin: auto;
+}
+#demographicSurvey .meaningInputs{
+	top: 27%;
+	left: auto;
+	margin: auto;
+	width: 561px;
+}
+#demographicSurvey .meaningButtons{
+	height: 60px;
+}

@@ -86,9 +86,15 @@ $(function(){
 			if(next == 'meaningInsight'){
 				meaningReset();
 				console.log('meaning reset');
+			}else if(next == 'contrastSensitivitySolo'){
+				contrastSoloReset();
+				console.log('contrast solo reset');
 			}else if(next == 'contrastSensitivity'){
 				contrastReset();
 				console.log('contrast reset');
+			}else if(next == 'demographicSurvey'){
+				demographicSurveyReset();
+				console.log('demographic survey reset');
 			}
 			console.log('navigating to: ' + next);
 			load(next, true);
@@ -97,8 +103,21 @@ $(function(){
 			meaningReset();
 			$("#meaningFinish").load( "html/waitForAssistant.html", function(){
 				$('#meaningFinish button.waitForAssistantButton').click(function(){
-					load('contrastSensitivity', false);
+					load('contrastSensitivitySolo', false);
 				});
+			});
+		});
+		$("#contrastSensitivitySolo").load( "html/contrastSensitivitySolo.html", function(){
+			meaningReset();
+			$("#contrastSoloFinish").load( "html/waitForAssistant.html", function(){
+				$('#contrastSoloFinish button.waitForAssistantButton').click(function(){
+					load('demographicSurvey', false);
+				});
+			});
+		});
+		$("#demographicSurvey").load( "html/demographicSurvey.html", function() {
+			$('#demographicSurvey5 button.submit').click(function(){
+				load('contrastSensitivity', false);
 			});
 		});
 		$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
