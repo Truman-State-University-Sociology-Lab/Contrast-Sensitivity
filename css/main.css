@@ -15,6 +15,7 @@ ul#navBar {
     width: 100%;
     background-color: #AAA2AE;
     text-align: center;
+    z-index: 1;
 }
 li.navItem {
     display: inline-block;
@@ -300,4 +301,24 @@ button{
 }
 #demographicSurvey .meaningButtons{
 	height: 60px;
+}
+#demographicSurvey form div{
+	width: 532px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#demographicSurvey form input, #demographicSurvey form select{
+	float: right;
+}
+#demographicSurvey form input[type="text"]{
+	width: 110px;
+}
+#demographicSurvey form label{
+	float: right;
+}
+#demographicSurvey form div.checkForm{
+	height: 129px;
+}
+#demographicSurvey form div.checkForm input{
+	margin-top: 7px;
 }
