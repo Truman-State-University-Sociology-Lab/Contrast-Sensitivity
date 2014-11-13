@@ -73,6 +73,13 @@ var contrastSensitivityLoad = function(next){
 				callLoad(next);
 			});
 		});
+		var tempAgree = $('#options input[name="contrastSensitivityAgree"]').val().split(',');
+		while(agreeQuestions.length > 0) {
+		    agreeQuestions.pop();
+		}
+		for(var i = 0; i<tempAgree.length; i++){
+			agreeQuestions.push(parseInt(tempAgree[i]));
+		}
 	});
 }
 var survey1Load = function(next){

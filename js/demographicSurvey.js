@@ -14,6 +14,15 @@ $('#demographicSurvey #demographicSurvey2 button.continue').click(function(){
 	$('#demographicSurvey #demographicSurvey2').hide();
 	$('#demographicSurvey #demographicSurvey3').show();
 });
+$('#demographicSurvey #demographicSurvey2 button.continue').click(function(){
+	$('#demographicSurvey #demographicSurvey3').hide();
+	$('#demographicSurvey #demographicSurvey4').show();
+	setTimeout(function(){
+		$('#demographicSurvey #demographicSurvey4').hide();
+		$('#demographicSurvey #demographicSurvey5').show();
+	}, tenSeconds);
+});
+
 
 var demographicSurveyReset = function(){
 	$('#demographicSurvey > div').hide();

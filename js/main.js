@@ -6,6 +6,10 @@ var pageView;
 var bannerHeight;
 var queryArray = window.location.search.substring(1).split('&');
 var queries = {};
+var tenSeconds = 10000;
+var fiveSeconds = 5000;
+var timeToBlank = 5000;
+var timeToNext = 7000;
 for(i=0;i<queryArray.length;i++){
 	queryArray[i] = queryArray[i].split('=');
 	queries[queryArray[i][0]] = queryArray[i][1]
@@ -39,7 +43,7 @@ var load = function(next,isShortcut){
 		setTimeout(function(){
 			$('#spinner').hide();
 			afterSpin();
-		}, 5000);
+		}, tenSeconds);
 	}
 }
 var updateLocation = function(newLocation){
@@ -49,7 +53,8 @@ var updateLocation = function(newLocation){
 	window.scrollTo(0,0);
 }
 var report = function(){
-	$('input:checked').each(function(){console.log(this.name + ": " + this.value)})
+	$('input:checked').not(".demographicSurvey").each(function(){console.log(this.name + ": " + this.value)});
+	$('#demographicSurvey input:checked,#demographicSurvey input[type=text], #demographicSurvey select').each(function(){console.log(this.name + ": " + this.value)});
 }
 $(function(){
 	opts = {
@@ -77,6 +82,10 @@ $(function(){
 	$('#bannerContainer').height(0).find('img').hide();
 
 	if(debug){
+		tenSeconds = 2000;
+		fiveSeconds = 1000;
+		timeToBlank = 500;
+		timeToNext = 1000;
 		$('#content > div').each(function(){
 			$('#navBar').append("<li class='navItem'><a href='" + this.id + "'>" + this.id + "</a></li>");
 		});

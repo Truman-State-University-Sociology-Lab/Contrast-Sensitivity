@@ -303,7 +303,7 @@ button{
 	height: 60px;
 }
 #demographicSurvey form div{
-	width: 532px;
+	width: 565px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -317,7 +317,7 @@ button{
 	float: right;
 }
 #demographicSurvey form div.checkForm{
-	height: 129px;
+	height: 130px;
 }
 #demographicSurvey form div.checkForm input{
 	margin-top: 7px;

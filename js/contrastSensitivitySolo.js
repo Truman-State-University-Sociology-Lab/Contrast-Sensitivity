@@ -4,15 +4,6 @@ $('input[disabled]').parent().css('color','#DCDCDC');
 var stepCounter;
 var content;
 var stepperContrastSolo;
-var timeToBlank;
-var timeToNext;
-if(debug){
-	timeToBlank = 500;
-	timeToNext = 1000;
-}else{
-	timeToBlank = 5000;
-	timeToNext = 7000;
-}
 
 $('#contrastSensitivitySolo #contrastSoloDemo1 button.continue').click(function(){
 	$('#contrastSensitivitySolo #contrastSoloDemo1').hide();

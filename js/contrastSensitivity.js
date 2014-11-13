@@ -43,9 +43,9 @@ $('#contrastSensitivity #contrastInstruction7 button.continue').click(function()
 			setTimeout(function(){
 				$('#contrastSensitivity #contrastDemo1').hide();
 				$('#contrastSensitivity #contrastDemo2').show();
-			}, 5000);
-		}, 2000);
-	}, 2000);
+			}, tenSeconds);
+		}, fiveSeconds);
+	}, fiveSeconds);
 });
 $('#contrastSensitivity #contrastDemo1 button.continue').click(function(){
 	$('#contrastSensitivity #contrastDemo1').hide();
@@ -56,7 +56,7 @@ $('#contrastSensitivity #contrastDemo2 .yourChoice .bottom.choice input:radio').
 		$('#contrastSensitivity #contrastDemo2').hide();
 		$('#contrastSensitivity #contrastDemo3').show();
 		$('#contrastSensitivity #contrastDemo3 .bottom input:radio[value="bottom"]')[0].checked = true;
-	}, 2000);
+	}, fiveSeconds);
 });
 $('#contrastSensitivity #contrastDemo3 button.continue').click(function(){
 	$('#contrastSensitivity #contrastDemo3').hide();
@@ -73,8 +73,8 @@ $('#contrastSensitivity #contrastDemo5 .yourChoice .choice input:radio').click(f
 		$('#contrastSensitivity #contrastDemo5').hide();
 		$('#contrastSensitivity #contrastDemo6').show();
 		$('#contrastSensitivity #contrastDemo6 .bottom input:radio[value="bottom"]')[0].checked = true;
-		$('#contrastDemo6 .yourChoice input:radio[name="contrastDemo1Final"][value="' + $('#contrastDemo5 .yourChoice input:radio[name="contrastDemo1Final"]:checked').val() + '"]').attr('checked', true)
-	}, 2000);
+		$('#contrastDemo6 .yourChoice input:radio[name="contrastDemo1Final"][value="' + $('#contrastDemo5 .yourChoice input:radio[name="contrastDemo1Final"]:checked').val() + '"]').prop('checked', true);
+	}, fiveSeconds);
 });
 $('#contrastSensitivity #contrastDemo6 button.continue').click(function(){
 	$('#contrastSensitivity #contrastDemo6').hide();
@@ -116,8 +116,8 @@ $('#contrastSensitivity #contrastScoring7 button.continue').click(function(){
 			$('#contrastSensitivity #contrast1').show();
 			stepCounter = 1;
 			blank();
-		}, 2000);
-	}, 2000);
+		}, fiveSeconds);
+	}, fiveSeconds);
 });
 
 var contrastReset = function(){
@@ -137,7 +137,7 @@ var contrastReset = function(){
 var blank = function(){
 	setTimeout(function(){
 		$('#contrast' + stepCounter + ' img').css('visibility','hidden');
-	}, 2000);
+	}, fiveSeconds);
 }
 var completeInitial = function(){
 	setTimeout(function(){
@@ -158,7 +158,7 @@ var completeInitial = function(){
 		$('#contrast' + stepCounter + ' .yourChoice').last().find('input').attr('disabled', false).closest('.yourChoice').find('p').css('color', 'black');
 		$('#contrast' + stepCounter + ' img').css('visibility','visible');
 		blank();
-	}, 2000);
+	}, fiveSeconds);
 }
 var completeFinal = function(){
 	setTimeout(function(){
@@ -171,5 +171,5 @@ var completeFinal = function(){
 			$('#contrastFinish').show();
 		}
 		blank();
-	}, 2000);
+	}, fiveSeconds);
 }
