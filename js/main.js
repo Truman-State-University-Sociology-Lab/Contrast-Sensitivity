@@ -10,6 +10,9 @@ var tenSeconds = 10000;
 var fiveSeconds = 5000;
 var timeToBlank = 5000;
 var timeToNext = 7000;
+var agreeMeaning;
+var agreeContrast;
+var canStart = false;
 for(i=0;i<queryArray.length;i++){
 	queryArray[i] = queryArray[i].split('=');
 	queries[queryArray[i][0]] = queryArray[i][1]
@@ -23,13 +26,21 @@ var load = function(next,isShortcut){
 		}else{
 			$('#bannerContainer').height(0).find('img').hide();
 			if(pageView == 'meaningInsight'){
-				meaningReset();
+				//meaningReset();
 				$('#meaningInsight > div').hide();
 				$('#meaningInsight #meaningDemo1').show();
+			}else if(pageView == 'meaningInsightSolo'){
+				meaningSoloReset();
+				$('#meaningInsightSolo > div').hide();
+				$('#meaningInsightSolo #meaningSoloDemo1').show();
 			}else if(pageView == 'contrastSensitivity'){
 				contrastReset();
 				$('#contrastSensitivity > div').hide();
 				$('#contrastSensitivity #contrastInstruction1').show();
+			}else if(pageView == 'contrastSensitivitySolo'){
+				contrastSoloReset();
+				$('#contrastSensitivitySolo > div').hide();
+				$('#contrastSensitivitySolo #contrastSoloDemo1').show();
 			}
 		}
 		updateLocation(pageView);
@@ -48,7 +59,7 @@ var load = function(next,isShortcut){
 }
 var updateLocation = function(newLocation){
 	$('.navItem').removeClass('currentLocation');
-	$('a[href *= ' + newLocation + ']').parent().addClass('currentLocation');
+	$('a[href = ' + newLocation + ']').parent().addClass('currentLocation');
 	$('#' + newLocation).show();
 	window.scrollTo(0,0);
 }
@@ -93,14 +104,17 @@ $(function(){
 			e.preventDefault();
 			var next = e.target.text||e.target.children[0].text;
 			if(next == 'meaningInsight'){
-				meaningReset();
+				//meaningReset();
 				console.log('meaning reset');
-			}else if(next == 'contrastSensitivitySolo'){
-				contrastSoloReset();
-				console.log('contrast solo reset');
+			}else if(next == 'meaningInsightSolo'){
+				meaningSoloReset();
+				console.log('meaning solo reset');
 			}else if(next == 'contrastSensitivity'){
 				contrastReset();
 				console.log('contrast reset');
+			}else if(next == 'contrastSensitivitySolo'){
+				contrastSoloReset();
+				console.log('contrast solo reset');
 			}else if(next == 'demographicSurvey'){
 				demographicSurveyReset();
 				console.log('demographic survey reset');
@@ -109,15 +123,31 @@ $(function(){
 			load(next, true);
 		});
 		$("#meaningInsight").load( "html/meaningInsight.html", function(){
-			meaningReset();
+			//meaningReset();
 			$("#meaningFinish").load( "html/waitForAssistant.html", function(){
 				$('#meaningFinish button.waitForAssistantButton').click(function(){
+					load('meaningInsightSolo', false);
+				});
+			});
+		});
+		$("#meaningInsightSolo").load( "html/meaningInsightSolo.html", function(){
+			meaningSoloReset();
+			$("#meaningSoloFinish").load( "html/waitForAssistant.html", function(){
+				$('#meaningSoloFinish button.waitForAssistantButton').click(function(){
+					load('contrastSensitivity', false);
+				});
+			});
+		});
+		$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
+			contrastReset();
+			$("#contrastFinish").load( "html/waitForAssistant.html", function(){
+				$('#contrastFinish button.waitForAssistantButton').click(function(){
 					load('contrastSensitivitySolo', false);
 				});
 			});
 		});
 		$("#contrastSensitivitySolo").load( "html/contrastSensitivitySolo.html", function(){
-			meaningReset();
+			contrastSoloReset();
 			$("#contrastSoloFinish").load( "html/waitForAssistant.html", function(){
 				$('#contrastSoloFinish button.waitForAssistantButton').click(function(){
 					load('demographicSurvey', false);
@@ -126,15 +156,7 @@ $(function(){
 		});
 		$("#demographicSurvey").load( "html/demographicSurvey.html", function() {
 			$('#demographicSurvey5 button.submit').click(function(){
-				load('contrastSensitivity', false);
-			});
-		});
-		$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
-			contrastReset();
-			$("#contrastFinish").load( "html/waitForAssistant.html", function(){
-				$('#contrastFinish button.waitForAssistantButton').click(function(){
-					load('survey1', false);
-				});
+				load('survey1', false);
 			});
 		});
 		$("#survey1").load( "html/survey1.html", function() {
@@ -161,11 +183,37 @@ $(function(){
 		$('#setup button.start').click(function(){
 			if($('#using li').length == 0){
 				alert('Please select at least one section to use');
-			}else if($('#options div[name="meaningInsight"]').length > 0 && $('#options div[name="meaningInsight"] input[name="meaningInsightAgree"]').val() == ""){
-				alert('Please select which Meaning Insight questions to agree with');
-			}else if($('#options div[name="contrastSensitivity"]').length > 0 && $('#options div[name="contrastSensitivity"] input[name="contrastSensitivityAgree"]').val() == ""){
-				alert('Please select which Contrast Sensitivity questions to agree with');
-			}else{
+				canStart = false;
+			}else{canStart = true;}
+			if(canStart && $('#options div[name="meaningInsight"]').length > 0){
+				agreeMeaning = $('#options input[name="meaningInsightAgree"]').val().split(',');
+				if(!agreeMeaning.every(function(i){
+					agreeMeaning[agreeMeaning.indexOf(i)] = parseInt(i);
+					if(typeof agreeMeaning[agreeMeaning.indexOf(parseInt(i))]==='number' && (agreeMeaning[agreeMeaning.indexOf(parseInt(i))]%1)===0){
+						return true;
+					}else{
+						return false;
+					}
+				})){
+					alert('Please select which Meaning Insight questions to agree with');
+					canStart = false;
+				}
+			}
+			if(canStart && $('#options div[name="contrastSensitivity"]').length > 0){
+				agreeContrast = $('#options input[name="contrastSensitivityAgree"]').val().split(',');
+				if(!agreeContrast.every(function(i){
+					agreeContrast[agreeContrast.indexOf(i)] = parseInt(i);
+					if(typeof agreeContrast[agreeContrast.indexOf(parseInt(i))]==='number' && (agreeContrast[agreeContrast.indexOf(parseInt(i))]%1)===0){
+						return true;
+					}else{
+						return false;
+					}
+				})){
+					alert('Please select which Contrast Sensitivity questions to agree with');
+					canStart = false;
+				}
+			}
+			if(canStart){
 				loadSections();
 				load('startScreen', true);
 			}

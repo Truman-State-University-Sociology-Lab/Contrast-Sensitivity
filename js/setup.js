@@ -47,6 +47,7 @@ var randomNumbers = function(val){
 }
 
 var loadSections = function(){
+	console.log('loading sections');
 	$('#using li').each(function(){order.push($(this).attr('name'))});
 	for(i=0;i<order.length;i++){
 		eval(order[i] + 'Load("' + order[i + 1] + '")');
@@ -57,10 +58,10 @@ var callLoad = function(next){
 	else{load('startScreen', false);}
 }
 
-var meaningInsightLoad = function(next){
-	$("#meaningInsight").load( "html/meaningInsight.html", function(){
-		$("#meaningFinish").load( "html/waitForAssistant.html", function(){
-			$('#meaningFinish button.waitForAssistantButton').click(function(){
+var meaningInsightSoloLoad = function(next){
+	$("#meaningSoloInsight").load( "html/meaningInsightSolo.html", function(){
+		$("#meaningSoloFinish").load( "html/waitForAssistant.html", function(){
+			$('#meaningSoloFinish button.waitForAssistantButton').click(function(){
 				callLoad(next);
 			});
 		});
@@ -73,13 +74,22 @@ var contrastSensitivityLoad = function(next){
 				callLoad(next);
 			});
 		});
-		var tempAgree = $('#options input[name="contrastSensitivityAgree"]').val().split(',');
-		while(agreeQuestions.length > 0) {
-		    agreeQuestions.pop();
-		}
-		for(var i = 0; i<tempAgree.length; i++){
-			agreeQuestions.push(parseInt(tempAgree[i]));
-		}
+		// var tempAgree = $('#options input[name="contrastSensitivityAgree"]').val().split(',');
+		// while(agreeQuestions.length > 0) {
+		//     agreeQuestions.pop();
+		// }
+		// for(var i = 0; i<tempAgree.length; i++){
+		// 	agreeQuestions.push(parseInt(tempAgree[i]));
+		// }
+	});
+}
+var contrastSensitivitySoloLoad = function(next){
+	$("#contrastSensitivitySolo").load( "html/contrastSensitivitySolo.html", function(){
+		$("#contrastSoloFinish").load( "html/waitForAssistant.html", function(){
+			$('#contrastSoloFinish button.waitForAssistantButton').click(function(){
+				callLoad(next);
+			});
+		});
 	});
 }
 var survey1Load = function(next){
