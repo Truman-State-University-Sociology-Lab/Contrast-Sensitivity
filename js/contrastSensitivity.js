@@ -5,7 +5,6 @@ $('#contrastSensitivity > div').hide();
 var stepCounter;
 var content;
 var stepperContrast;
-var agreeQuestions = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25];
 
 $('#contrastSensitivity #contrastInstruction1 button.continue').click(function(){
 	$('#contrastSensitivity #contrastInstruction1').hide();
@@ -73,7 +72,7 @@ $('#contrastSensitivity #contrastDemo5 .yourChoice .choice input:radio').click(f
 		$('#contrastSensitivity #contrastDemo5').hide();
 		$('#contrastSensitivity #contrastDemo6').show();
 		$('#contrastSensitivity #contrastDemo6 .bottom input:radio[value="bottom"]')[0].checked = true;
-		$('#contrastDemo6 .yourChoice input:radio[name="contrastDemo1Final"][value="' + $('#contrastDemo5 .yourChoice input:radio[name="contrastDemo1Final"]:checked').val() + '"]').prop('checked', true);
+		$('#contrastDemo6 .yourChoice input[name="contrastDemo1Final"][value="' + $('#contrastDemo5 .yourChoice input[name="contrastDemo1Final"]:checked').val() + '"]').prop('checked', true);
 	}, fiveSeconds);
 });
 $('#contrastSensitivity #contrastDemo6 button.continue').click(function(){
@@ -130,8 +129,8 @@ var contrastReset = function(){
 	}
 	$('#contrastQuestions .partnerChoice').prev().find('input[type="radio"]').click(function(){completeInitial();});
 	$('#contrastQuestions .partnerChoice').next().find('input[type="radio"]').click(function(){completeFinal();});
-	$('input[disabled]').closest('.yourChoice').find('p').css('color','#DCDCDC');
-	$('#contrastDemo2 .yourChoice').first().find('.bottom input').attr('disabled', false).prev().css('color','black').closest('.yourChoice').find('.panelText p').css('color','black');
+	// $('input[disabled]').closest('.yourChoice').find('p').css('color','#DCDCDC');
+	// $('#contrastDemo2 .yourChoice').first().find('.bottom input').attr('disabled', false).prev().css('color','black').closest('.yourChoice').find('.panelText p').css('color','black');
 }
 
 var blank = function(){
@@ -142,7 +141,7 @@ var blank = function(){
 var completeInitial = function(){
 	setTimeout(function(){
 		$('#contrast' + stepCounter + ' .yourChoice').first().find('input').attr('disabled', true).closest('.yourChoice').find('p').css('color','#DCDCDC');
-		if(agreeQuestions.indexOf(stepCounter) == -1){
+		if(agreeContrast.indexOf(stepCounter) == -1){
 			if($('#contrast' + stepCounter + ' .yourChoice input:radio[name="contrast' + stepCounter + 'Initial"][value="top"]').attr('checked')){
 				$('#contrast' + stepCounter + ' .partnerChoice .bottom .bulbPicture').css('background-image', "url('assets/images/contrast/lit.png')");
 			}else{

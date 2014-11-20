@@ -10,8 +10,8 @@ var tenSeconds = 10000;
 var fiveSeconds = 5000;
 var timeToBlank = 5000;
 var timeToNext = 7000;
-var agreeMeaning;
-var agreeContrast;
+var agreeMeaning = [1,3,5,7,9,11,13,15,17,19,21,23,25];
+var agreeContrast = [1,3,5,7,9,11,13,15,17,19,21,23,25];
 var canStart = false;
 for(i=0;i<queryArray.length;i++){
 	queryArray[i] = queryArray[i].split('=');
@@ -124,6 +124,7 @@ $(function(){
 		});
 		$("#meaningInsight").load( "html/meaningInsight.html", function(){
 			//meaningReset();
+			console.log('meaningInsight loaded');
 			$("#meaningFinish").load( "html/waitForAssistant.html", function(){
 				$('#meaningFinish button.waitForAssistantButton').click(function(){
 					load('meaningInsightSolo', false);
@@ -132,6 +133,7 @@ $(function(){
 		});
 		$("#meaningInsightSolo").load( "html/meaningInsightSolo.html", function(){
 			meaningSoloReset();
+			console.log('meaningInsightSolo loaded');
 			$("#meaningSoloFinish").load( "html/waitForAssistant.html", function(){
 				$('#meaningSoloFinish button.waitForAssistantButton').click(function(){
 					load('contrastSensitivity', false);
@@ -140,6 +142,7 @@ $(function(){
 		});
 		$("#contrastSensitivity").load( "html/contrastSensitivity.html", function() {
 			contrastReset();
+			console.log('contrastSensitivity loaded');
 			$("#contrastFinish").load( "html/waitForAssistant.html", function(){
 				$('#contrastFinish button.waitForAssistantButton').click(function(){
 					load('contrastSensitivitySolo', false);
@@ -148,6 +151,7 @@ $(function(){
 		});
 		$("#contrastSensitivitySolo").load( "html/contrastSensitivitySolo.html", function(){
 			contrastSoloReset();
+			console.log('contrastSensitivitySolo loaded');
 			$("#contrastSoloFinish").load( "html/waitForAssistant.html", function(){
 				$('#contrastSoloFinish button.waitForAssistantButton').click(function(){
 					load('demographicSurvey', false);
@@ -155,21 +159,25 @@ $(function(){
 			});
 		});
 		$("#demographicSurvey").load( "html/demographicSurvey.html", function() {
+			console.log('demographicSurvey loaded');
 			$('#demographicSurvey5 button.submit').click(function(){
 				load('survey1', false);
 			});
 		});
 		$("#survey1").load( "html/survey1.html", function() {
+			console.log('survey1 loaded');
 			$('#survey1 button.submit').click(function(){
 				load('survey2', false);
 			});
 		});
 		$("#survey2").load( "html/survey2.html", function() {
+			console.log('survey2 loaded');
 			$('#survey2 button.submit').click(function(){
 				load('survey3', false);
 			});
 		});
 		$("#survey3").load( "html/survey3.html", function() {
+			console.log('survey3 loaded');
 			$('#survey3 button.submit').click(function(){
 				load('startScreen', false);
 			});
@@ -196,6 +204,7 @@ $(function(){
 					}
 				})){
 					alert('Please select which Meaning Insight questions to agree with');
+					agreeMeaning = [1,3,5,7,9,11,13,15,17,19,21,23,25];
 					canStart = false;
 				}
 			}
@@ -210,6 +219,7 @@ $(function(){
 					}
 				})){
 					alert('Please select which Contrast Sensitivity questions to agree with');
+					agreeContrast = [1,3,5,7,9,11,13,15,17,19,21,23,25];
 					canStart = false;
 				}
 			}

@@ -14,7 +14,7 @@ $('#demographicSurvey #demographicSurvey2 button.continue').click(function(){
 	$('#demographicSurvey #demographicSurvey2').hide();
 	$('#demographicSurvey #demographicSurvey3').show();
 });
-$('#demographicSurvey #demographicSurvey2 button.continue').click(function(){
+$('#demographicSurvey #demographicSurvey3 button.continue').click(function(){
 	$('#demographicSurvey #demographicSurvey3').hide();
 	$('#demographicSurvey #demographicSurvey4').show();
 	setTimeout(function(){
